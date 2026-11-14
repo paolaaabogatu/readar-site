@@ -1,0 +1,17 @@
+{
+  "name": "readar-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^24.0.0"
+  },
+  "scripts": {
+    "dev": "npm exec --yes --package=node@24 -- node ./node_modules/.bin/astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.4.12"
+  }
+}
