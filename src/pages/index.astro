@@ -1,17 +1,39 @@
 <!doctype html>
 <html lang="ro">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Readar te ajută să identifici o carte dintr-o fotografie." />
-    <title>Readar</title>
-  </head>
-  <body>
-    <main>
-      <h1>Readar</h1>
-      <p>Află titlul și autorul unei cărți dintr-o fotografie.</p>
-    </main>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Readar te ajută să identifici o carte dintr-o fotografie." />
+  <title>Readar</title>
+</head>
+<body>
+<div class="preloader" aria-hidden="true">
+  <div class="brand">
+    <svg class="mark" viewBox="-90 -88 180 172" aria-hidden="true">
+      <defs>
+        <path id="readar-petal" d="M0-4C-9-19-20-34-20-54V-85H20V-54C20-34 9-19 0-4Z" />
+      </defs>
+      <g class="petals" fill="currentColor">
+        <g><path d="M0-4C-9-19-20-34-20-54V-85H6L20-71V-54C20-34 9-19 0-4Z" /><path class="fold" d="M6-85 20-71H6Z" /></g>
+        <g><use href="#readar-petal" transform="rotate(72)" /></g>
+        <g><use href="#readar-petal" transform="rotate(144)" /></g>
+        <g><use href="#readar-petal" transform="rotate(216)" /></g>
+        <g><use href="#readar-petal" transform="rotate(288)" /></g>
+      </g>
+    </svg>
+    <p class="wordmark">Readar</p>
+    <p class="japanese" lang="ja">リーダー</p>
+  </div>
+  <div class="loading">
+    <div class="progress"></div>
+    <p>Se pregătește raftul tău</p>
+  </div>
+</div>
+<main>
+  <h1>Readar</h1>
+  <p>Află titlul și autorul unei cărți dintr-o fotografie.</p>
+</main>
+</body>
 </html>
 
 <style>
@@ -33,4 +55,94 @@
 
   h1, p { margin: 0; }
   h1 { font: 500 clamp(3rem, 11vw, 7rem)/1 Georgia, serif; }
+
+  .preloader {
+    position: fixed;
+    z-index: 1;
+    inset: 0;
+    overflow: hidden;
+    background: #0b2a52;
+    color: #f3ebe5;
+    text-align: center;
+    animation: exit 0.9s cubic-bezier(0.7, 0, 0.84, 0) 3.1s both;
+  }
+
+  .brand, .loading {
+    position: absolute;
+    inset-inline: 0;
+    display: grid;
+    justify-items: center;
+  }
+
+  .brand { top: 32.8%; }
+  .mark { width: clamp(7rem, 20svh, 11.25rem); height: auto; }
+  .petals { animation: turn 1.3s cubic-bezier(0.65, 0, 0.35, 1) both; }
+  .petals > g { animation: appear 0.55s ease-out both; }
+  .petals > g:nth-child(2) { animation-delay: 110ms; }
+  .petals > g:nth-child(3) { animation-delay: 220ms; }
+  .petals > g:nth-child(4) { animation-delay: 330ms; }
+  .petals > g:nth-child(5) { animation-delay: 440ms; }
+
+  .fold {
+    fill: #d68c93;
+    transform-origin: 6px -71px;
+    animation: fold 0.45s ease-out 1.15s both;
+  }
+
+  .wordmark {
+    margin-top: clamp(1.6rem, 5.5svh, 3.1rem);
+    font: 400 clamp(2.25rem, 5.5svh, 3.125rem)/1.12 Georgia, serif;
+    animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.35s both;
+  }
+
+  .japanese {
+    margin-top: clamp(0.85rem, 3.1svh, 1.75rem);
+    padding-inline-start: 0.58em;
+    font: 400 clamp(0.75rem, 2svh, 1.125rem)/1.25 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+    letter-spacing: 0.58em;
+    animation: appear 0.6s ease-out 1.6s both;
+  }
+
+  .loading {
+    top: 81.8%;
+    gap: clamp(0.65rem, 2.1svh, 1.2rem);
+    padding-inline: 0.75rem;
+    font-size: clamp(0.55rem, 2.4vw, 0.6875rem);
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    animation: appear 0.45s ease-out 1.6s both;
+  }
+
+  .progress {
+    width: clamp(8rem, 52vw, 12.75rem);
+    height: 1px;
+    background: rgb(243 235 229 / 28%);
+  }
+
+  .progress::after {
+    content: '';
+    display: block;
+    height: 100%;
+    background: currentColor;
+    transform-origin: left;
+    animation: fill 1.45s cubic-bezier(0.16, 1, 0.3, 1) 1.65s both;
+  }
+
+  @keyframes turn { from { transform: rotate(-72deg); } }
+  @keyframes appear { from { opacity: 0; } }
+  @keyframes fold { from { transform: scaleX(0); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+  @keyframes fill { from { transform: scaleX(0); } }
+  @keyframes exit { to { opacity: 0; visibility: hidden; } }
+
+  @media (max-height: 480px) {
+    .brand { top: 15%; }
+    .mark { width: 22svh; }
+    .wordmark { margin-top: 3svh; }
+    .loading { top: auto; bottom: 8%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .preloader { display: none; }
+  }
 </style>
