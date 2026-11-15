@@ -44,6 +44,8 @@ import googlePlayIcon from '../assets/icon-googleplay.svg?url&no-inline';
 <main>
   <section class="hero" aria-label="Readar">
     <picture>
+      <source media="(max-width: 760px)" srcset="/images/hero-book-portrait.webp" type="image/webp" />
+      <source media="(max-width: 760px)" srcset="/images/hero-book-portrait.jpg" type="image/jpeg" />
       <source srcset="/images/hero-book.webp" type="image/webp" />
       <img class="photo" src="/images/hero-book.jpg" width="1312" height="780" alt="O carte deschisă cu flori de cireș între pagini" />
     </picture>
@@ -209,8 +211,10 @@ import googlePlayIcon from '../assets/icon-googleplay.svg?url&no-inline';
       inset: 0;
       flex-direction: column;
       justify-content: center;
-      gap: 18px;
+      gap: 22px;
+      padding: 0 24px 12svh;
     }
+
     .lockup { gap: 14px; padding: 0; }
     .hero-mark { width: 52px; }
     h1 { font-size: 46px; }
