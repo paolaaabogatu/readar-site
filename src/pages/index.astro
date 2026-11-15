@@ -205,8 +205,29 @@ import googlePlayIcon from '../assets/icon-googleplay.svg?url&no-inline';
   @keyframes settle { from { transform: scale(1.08); } }
 
   @media (max-width: 760px) {
-    main { gap: 32px; padding: 32px 20px; }
-    .hero { aspect-ratio: 4 / 5; }
+    main {
+      gap: 0;
+      justify-content: flex-start;
+      padding: 0;
+    }
+
+    .hero {
+      aspect-ratio: auto;
+      height: calc(100svh - 56px);
+      min-height: 540px;
+    }
+
+    .photo { object-position: 60% 45%; }
+
+    .shade {
+      background: linear-gradient(
+        180deg,
+        rgb(11 42 82 / 30%) 0%,
+        rgb(11 42 82 / 20%) 40%,
+        rgb(11 42 82 / 62%) 100%
+      );
+    }
+
     .overlay {
       inset: 0;
       flex-direction: column;
@@ -216,12 +237,32 @@ import googlePlayIcon from '../assets/icon-googleplay.svg?url&no-inline';
     }
 
     .lockup { gap: 14px; padding: 0; }
-    .hero-mark { width: 52px; }
-    h1 { font-size: 46px; }
-    .divider { width: 48px; height: 1.5px; }
-    .tagline { font-size: 18px; text-align: center; }
-    .soon { bottom: 20px; gap: 12px; }
-    .stores li { width: 36px; height: 36px; }
+    .hero-mark { width: 50px; }
+    h1 { font-size: 54px; }
+    .divider { width: 40px; height: 1.5px; }
+    .tagline { font-size: 20px; text-align: center; }
+
+    .soon {
+      bottom: calc(28px + env(safe-area-inset-bottom));
+      gap: 14px;
+    }
+
+    .stores li { width: 42px; height: 42px; }
+
+    .legal {
+      display: grid;
+      place-items: center;
+      height: 56px;
+      padding: 0 20px;
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 760px) and (max-height: 600px) {
+    .overlay { gap: 14px; padding-bottom: 14svh; }
+    h1 { font-size: 44px; }
+    .hero-mark { width: 40px; }
+    .tagline { font-size: 17px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
